@@ -1,0 +1,46 @@
+.cursor-hover-imgbox {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.image {
+    opacity: 0;
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 300ms;
+}
+.image.bg-default {
+    opacity: 1;
+    background-image: url(./images/home/default.jpg);
+}
+.image.bg-todolist {
+    opacity: 1;
+    background-image: url(./images/home/todolist.png);
+}
+.image.bg-pokebook {
+    opacity: 1;
+    background-image: url(./images/home/pokebook.png);
+}
+.image.bg-pinwork {
+    opacity: 1;
+    background-image: url(./images/home/pinwork.png);
+}
+.project-name {
+    display: inline-block;
+    padding: 10px 0;
+}
+.project-name::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 1px;
+    background-color: #000;
+    vertical-align: middle;
+    margin-right: 16px;
+    margin-left: 8px;
+}
