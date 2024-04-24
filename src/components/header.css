@@ -1,0 +1,61 @@
+.hamburger {
+    position: relative;
+    width: 40px;
+    padding: 12px;
+    padding-right: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    display: none;
+}
+.hamburger span {
+    content: "";
+    background: #1f2937;
+    display: block;
+    height: 2px;
+    width: 100%;
+    border-radius: 3px;
+    margin: 3px 0;
+    flex-shrink: 0;
+    transition: 0.5s;
+}
+.hamburger.clicked span:nth-child(1) {
+    transform: translateY(8px) rotate(135deg);
+}
+
+.hamburger.clicked span:nth-child(3) {
+    transform: translateY(-8px) rotate(-135deg);
+}
+
+.hamburger.clicked span:nth-child(2) {
+    transform: scale(0);
+}
+@media (max-width: 450px) {
+    .hamburger {
+        display: flex;
+    }
+    .menu-list {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 0;
+        opacity: 0;
+        visibility: hidden;
+        height: 100vh;
+        background-color: #fff;
+        padding: 32px;
+        padding-top: 72px;
+        box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.1);
+        transition: all 280ms ease-in;
+    }
+    .menu-list.active {
+        width: 80vw;
+        opacity: 1;
+        visibility: visible;
+    }
+    .menu-list li {
+        margin-left: 0;
+        font-size: 1.1rem;
+        width: 100%;
+    }
+}

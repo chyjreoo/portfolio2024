@@ -6,7 +6,7 @@ import { GoMail } from "react-icons/go";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import { useEffect ,useState, useRef, useLayoutEffect } from "react";
+import { useEffect ,useState, useRef } from "react";
 
 
 function HomePage() {    
@@ -15,68 +15,72 @@ function HomePage() {
     const imgBoxRef = useRef<HTMLElement>(null);
 
     useEffect(()=>{
-        if (sectionRefs.current) {
-            gsap.registerPlugin(ScrollTrigger,ScrollToPlugin);
-           
-            gsap.context(()=>{
-                const scrolling = {
-                    enabled: true,
-                    events: "scroll,wheel,touchmove,pointermove".split(","),
-                    prevent: (e: Event) => {
-                        e.preventDefault();
-                    },
-                    disable() {
-                        if (scrolling.enabled) {
-                            scrolling.enabled = false;
-                            window.addEventListener("scroll", gsap.ticker.tick, {passive: true});
-                            scrolling.events.forEach((e, i) => (i ? document : window).addEventListener(e, scrolling.prevent, {passive: false}));
+        let DesktopAni = gsap.matchMedia();
+
+        DesktopAni.add('(min-width: 450px)',()=>{
+            if (sectionRefs.current) {
+                gsap.registerPlugin(ScrollTrigger,ScrollToPlugin);
+               
+                gsap.context(()=>{
+                    const scrolling = {
+                        enabled: true,
+                        events: "scroll,wheel,touchmove,pointermove".split(","),
+                        prevent: (e: Event) => {
+                            e.preventDefault();
+                        },
+                        disable() {
+                            if (scrolling.enabled) {
+                                scrolling.enabled = false;
+                                window.addEventListener("scroll", gsap.ticker.tick, {passive: true});
+                                scrolling.events.forEach((e, i) => (i ? document : window).addEventListener(e, scrolling.prevent, {passive: false}));
+                            }
+                        },
+                        enable() {
+                            if (!scrolling.enabled) {
+                                scrolling.enabled = true;
+                                window.removeEventListener("scroll", gsap.ticker.tick);
+                                scrolling.events.forEach((e, i) => (i ? document : window).removeEventListener(e, scrolling.prevent));
+                            }
                         }
-                    },
-                    enable() {
-                        if (!scrolling.enabled) {
-                            scrolling.enabled = true;
-                            window.removeEventListener("scroll", gsap.ticker.tick);
-                            scrolling.events.forEach((e, i) => (i ? document : window).removeEventListener(e, scrolling.prevent));
+                    };
+                    function goToSection(section: HTMLDivElement, anim: GSAPTween) {
+                        if (scrolling.enabled) { // skip if a scroll tween is in progress
+                                scrolling.disable();
+                                gsap.to(window, {
+                                    scrollTo: {y: section, autoKill: false},
+                                    onComplete: scrolling.enable,
+                                    duration: 1
+                                });
+                
+                            anim && anim.restart();
                         }
                     }
-                };
-                function goToSection(section: HTMLDivElement, anim: GSAPTween) {
-                    if (scrolling.enabled) { // skip if a scroll tween is in progress
-                            scrolling.disable();
-                            gsap.to(window, {
-                                scrollTo: {y: section, autoKill: false},
-                                onComplete: scrolling.enable,
-                                duration: 1
-                            });
             
-                        anim && anim.restart();
-                    }
-                }
-        
-                if(sectionRefs.current) {
-                    Array.from(sectionRefs.current.children).forEach((sectionNode, i) => {
-                        const section = sectionNode as HTMLDivElement;
-                        const imgBox = section.querySelector(".imgbox");
-                        let intoAnim: GSAPTween;
-                        if (imgBox) {
-                            intoAnim = gsap.fromTo(section.querySelector(".imgbox"),{ opacity:0, yPercent: 20 }, { opacity:1, yPercent: 0, duration: 1, paused: true });
-                        }
-                        ScrollTrigger.create({
-                            trigger: section,
-                            start: "top bottom-=1",
-                            end: "bottom top+=1",
-                            onEnter: () => goToSection(section, intoAnim),
-                            onEnterBack: () => goToSection(section, intoAnim)
+                    if(sectionRefs.current) {
+                        Array.from(sectionRefs.current.children).forEach((sectionNode, i) => {
+                            const section = sectionNode as HTMLDivElement;
+                            const imgBox = section.querySelector(".imgbox");
+                            let intoAnim: GSAPTween;
+                            if (imgBox) {
+                                intoAnim = gsap.fromTo(section.querySelector(".imgbox"),{ opacity:0, yPercent: 20 }, { opacity:1, yPercent: 0, duration: 1, paused: true });
+                            }
+                            ScrollTrigger.create({
+                                trigger: section,
+                                start: "top bottom-=1",
+                                end: "bottom top+=1",
+                                onEnter: () => goToSection(section, intoAnim),
+                                onEnterBack: () => goToSection(section, intoAnim)
+                            });
+                            
                         });
-                        
-                    });
-                }
-            })
-            return () => {
-                ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    
-            };
-        }
+                    }
+                })
+                return () => {
+                    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        
+                };
+            }
+        })
     },[])
 
 
@@ -94,19 +98,18 @@ function HomePage() {
     }
 
     return (
-        <div ref={sectionRefs} className="container mx-auto">
-            <section  id="section1" className="grid grid-cols-2 gap-10 h-dvh">
-                
+        <div ref={sectionRefs} className="container mx-auto px-4 md:px-4 xl:px-0 pt-24 md:pt-0">
+            <section  id="section1" className="grid md:grid-cols-2 gap-4 md:gap-10 h-fit md:h-dvh">
                 <div className="col-span-1">
                     <AboutSection />
                 </div>
                 <div className="col-span-1">
-                    <div className="imgbox flex flex-col justify-center h-dvh">
+                    <div className="imgbox flex flex-col justify-center h-fit md:h-dvh">
                         <img className="w-fit border rounded-lg" src="./images/home/banner.jpg" alt="banner" />
                     </div>
                 </div>
             </section>
-            <section id="section2" className="grid grid-cols-2 gap-10 h-dvh">
+            <section id="section2" className="grid md:grid-cols-2 gap-4 md:gap-10 h-fit md:h-dvh mt-16 md:mt-0">
                 <div className="col-span-1 md:order-2 order-1">
                     <IndexSection twTitle="專案作品" engTitle="Projects">
                         <div>
@@ -143,17 +146,17 @@ function HomePage() {
                     </IndexSection>
                 </div>
                 <div className="col-span-1 md:order-1 order-2">
-                    <div className='flex flex-col justify-center h-dvh imgbox'>
+                    <div className='flex flex-col justify-center h-fit md:h-dvh imgbox'>
                         <div ref={imgBoxRef as React.LegacyRef<HTMLDivElement>} className="cursor-hover-imgbox border">
                             <div className={`image bg-${activeImg}`}></div>
                         </div>
                     </div>
                 </div>
             </section>
-            <section id="section3" className="grid grdi-cols-2 gap-10 h-dvh">
-                <div className="col-span-1 text-center">
+            <section id="section3" className="grid grdi-cols-2 gap-4 md:gap-10 h-fit md:h-dvh mt-16 md:mt-0">
+                <div className="col-span-1 md:text-center">
                     <IndexSection twTitle="與我聯繫" engTitle="Contact">
-                        <div>
+                        <div className='pb-10 mb-24 text-center'>
                             <a className='inline-flex items-center' href='mailto:chyjreoo@gmail.com'><span><GoMail className='mr-2' /></span>chyjreoo●gmail.com</a>
                         </div>
                     </IndexSection>

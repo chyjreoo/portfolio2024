@@ -33,7 +33,7 @@ function ProjectDetailPage() {
                 details.project_items?.map((el,index)=>{
                     return (
                         <div className='p-5 mb-8 bg-zinc-100' key={el.title}>
-                            <div className='grid grid-cols-2 gap-8'>
+                            <div className='grid md:grid-cols-2 gap-8'>
                                 <div className='col-span-1'>
                                     <img src={el.image} alt='preview' />
                                 </div>
@@ -58,7 +58,7 @@ function ProjectDetailPage() {
     }
 
     return (
-        <div className='container mx-auto pt-20 pb-20'>
+        <div className='container mx-auto pt-24 md:pt-20 pb-20 px-4 md:px-4 xl:px-0'>
             {htmlContent}
         </div>
     )

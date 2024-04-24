@@ -1,15 +1,30 @@
-@media only screen and (min-width: 768px) {
-    .parent:hover .child {
-        opacity: 1;
-        height: auto;
-        overflow: none;
-        transform: translateY(0);
-    }
 
-    .child {
+.parent:hover .child {
+    opacity: 1;
+    height: auto;
+    overflow: auto;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.child {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    transform: translateY(-10%);
+}
+@media (max-width: 450px) {
+    .parent:hover .child {
         opacity: 0;
         height: 0;
         overflow: hidden;
         transform: translateY(-10%);
+    }
+    .parent.active .child {
+        opacity: 1;
+        height: auto;
+        overflow: auto;
+        transform: translateY(0);
     }
 }
