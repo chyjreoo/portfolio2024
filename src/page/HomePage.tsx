@@ -6,73 +6,80 @@ import { GoMail } from "react-icons/go";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect ,useState, useRef, useLayoutEffect } from "react";
 
 
 function HomePage() {    
     const [activeImg, setActiveImg] = useState('default');
-    
-    gsap.registerPlugin(ScrollTrigger,ScrollToPlugin);
-    
-    useEffect(()=>{
-        const ctx = gsap.context(()=>{
-            const sections = document.querySelectorAll("section");
-            const scrolling = {
-                enabled: true,
-                events: "scroll,wheel,touchmove,pointermove".split(","),
-                prevent: (e: Event) => {
-                    e.preventDefault();
-                },
-                disable() {
-                    if (scrolling.enabled) {
-                        scrolling.enabled = false;
-                        window.addEventListener("scroll", gsap.ticker.tick, {passive: true});
-                        scrolling.events.forEach((e, i) => (i ? document : window).addEventListener(e, scrolling.prevent, {passive: false}));
-                    }
-                },
-                enable() {
-                    if (!scrolling.enabled) {
-                        scrolling.enabled = true;
-                        window.removeEventListener("scroll", gsap.ticker.tick);
-                        scrolling.events.forEach((e, i) => (i ? document : window).removeEventListener(e, scrolling.prevent));
-                    }
-                }
-            };
-            function goToSection(section: HTMLElement, anim: GSAPTween) {
-                if (scrolling.enabled) { // skip if a scroll tween is in progress
-                        scrolling.disable();
-                        gsap.to(window, {
-                            scrollTo: {y: section, autoKill: false},
-                            onComplete: scrolling.enable,
-                            duration: 1
-                        });
-        
-                    anim && anim.restart();
-                }
-            }
-    
-            if(sections) {
-                sections.forEach((section, i) => {
-                    const intoAnim = gsap.fromTo(section.querySelector(".imgbox"),{ opacity:0, yPercent: 20 }, { opacity:1, yPercent: 0, duration: 1, paused: true });
-                    console.log(section)
-                    ScrollTrigger.create({
-                        id: "homeScroll",
-                        trigger: section,
-                        start: "top bottom-=1",
-                        end: "bottom top+=1",
-                        onEnter: () => goToSection(section, intoAnim),
-                        onEnterBack: () => goToSection(section, intoAnim)
-                    });
-                    
-                });
-            }
-        })
+    const sectionRefs = useRef<HTMLDivElement>(null); 
+    const imgBoxRef = useRef<HTMLElement>(null);
 
-        return () => ctx.revert();
+    useEffect(()=>{
+        if (sectionRefs.current) {
+            gsap.registerPlugin(ScrollTrigger,ScrollToPlugin);
+           
+            gsap.context(()=>{
+                const scrolling = {
+                    enabled: true,
+                    events: "scroll,wheel,touchmove,pointermove".split(","),
+                    prevent: (e: Event) => {
+                        e.preventDefault();
+                    },
+                    disable() {
+                        if (scrolling.enabled) {
+                            scrolling.enabled = false;
+                            window.addEventListener("scroll", gsap.ticker.tick, {passive: true});
+                            scrolling.events.forEach((e, i) => (i ? document : window).addEventListener(e, scrolling.prevent, {passive: false}));
+                        }
+                    },
+                    enable() {
+                        if (!scrolling.enabled) {
+                            scrolling.enabled = true;
+                            window.removeEventListener("scroll", gsap.ticker.tick);
+                            scrolling.events.forEach((e, i) => (i ? document : window).removeEventListener(e, scrolling.prevent));
+                        }
+                    }
+                };
+                function goToSection(section: HTMLDivElement, anim: GSAPTween) {
+                    if (scrolling.enabled) { // skip if a scroll tween is in progress
+                            scrolling.disable();
+                            gsap.to(window, {
+                                scrollTo: {y: section, autoKill: false},
+                                onComplete: scrolling.enable,
+                                duration: 1
+                            });
+            
+                        anim && anim.restart();
+                    }
+                }
+        
+                if(sectionRefs.current) {
+                    Array.from(sectionRefs.current.children).forEach((sectionNode, i) => {
+                        const section = sectionNode as HTMLDivElement;
+                        const imgBox = section.querySelector(".imgbox");
+                        let intoAnim: GSAPTween;
+                        if (imgBox) {
+                            intoAnim = gsap.fromTo(section.querySelector(".imgbox"),{ opacity:0, yPercent: 20 }, { opacity:1, yPercent: 0, duration: 1, paused: true });
+                        }
+                        ScrollTrigger.create({
+                            trigger: section,
+                            start: "top bottom-=1",
+                            end: "bottom top+=1",
+                            onEnter: () => goToSection(section, intoAnim),
+                            onEnterBack: () => goToSection(section, intoAnim)
+                        });
+                        
+                    });
+                }
+            })
+            return () => {
+                ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    
+            };
+        }
     },[])
 
 
-    const imgBoxRef = useRef<HTMLElement>(null);
 
     const handleHoverIn = (event: React.MouseEvent) => {
         const link: string | null = (event.target as HTMLAnchorElement)?.href;
@@ -87,8 +94,9 @@ function HomePage() {
     }
 
     return (
-        <div className="container mx-auto">
-            <section id="section1" className="grid grid-cols-2 gap-10 h-dvh">
+        <div ref={sectionRefs} className="container mx-auto">
+            <section  id="section1" className="grid grid-cols-2 gap-10 h-dvh">
+                
                 <div className="col-span-1">
                     <AboutSection />
                 </div>
@@ -153,6 +161,7 @@ function HomePage() {
             </section>
         </div>
     )
+    
 }
 
 export default HomePage;

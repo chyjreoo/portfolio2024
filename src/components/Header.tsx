@@ -48,7 +48,7 @@ function Header() {
                                 <Dropdown links={projectLinks} />
                             </li>
                             <li>
-                                <Link to="/contact"><FiMail /></Link>
+                                <a href="mailto:chyjreoo@gmail.com"><FiMail /></a>
                             </li>
                         </ul>
                     </div>

@@ -37,7 +37,7 @@ const projectsContent: projectsProps[] = [
     {
         name: 'pinwork',
         title: '過去作品',
-        desc: '於品科技任職時的參與專案稿件展示',
+        desc: '過去參與過的部分專案稿件展示',
         project_items: [
             {
                 title: '廣懿GOOYII科技',

@@ -4,7 +4,7 @@ import { SiHtml5, SiCss3, SiJquery, SiReact } from "react-icons/si";
 function AboutSection() {
     return (
         <IndexSection twTitle="關於我" engTitle="About">
-            <p>姜皓云，台南人，畢業於國立臺中科技大學多媒體設計系。<br />自2021年1月至2024年2月於品科技股份有限公司擔任前端設計師，主要負責視覺設計及畫面切版，製作稿件並與客戶確認畫面流程。<br /><br />在此之前任職過婚紗攝影助理、行政助理以及咖啡廳服務生。</p>
+            <p>姜皓云，台南人，畢業於國立臺中科技大學多媒體設計系。<br />自2021年1月至2024年2月於品科技股份有限公司擔任前端設計師，主要負責視覺設計及畫面切版，製作稿件並與客戶確認畫面流程。<br /><br />在此之前任職過婚紗攝影助理、影片剪輯、行政助理以及咖啡廳服務生。</p>
 
             <div className="grid grid-cols-3 gap-8 pt-12">
                 <div className="col-span-1">

@@ -39,8 +39,8 @@ function ProjectDetailPage() {
                                 </div>
                                 <div className="col-span-1">
                                     <span>Case {index+1}.</span>
-                                    <h4 className='text-3xl mb-2'>{el.title}</h4>
-                                    <p className='whitespace-pre-wrap'>{el.type}</p>
+                                    <h4 className='text-3xl mb-1'>{el.title}</h4>
+                                    <p className='whitespace-pre-wrap text-type-color'>{el.type}</p>
                                     <article className='text-neutral-500 my-8'>
                                         <p className='whitespace-pre-wrap'>{el.detail}</p>
                                     </article>

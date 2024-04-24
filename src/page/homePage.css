@@ -16,19 +16,19 @@
 }
 .image.bg-default {
     opacity: 1;
-    background-image: url(./images/home/default.jpg);
+    background-image: url(/images/home/default.jpg);
 }
 .image.bg-todolist {
     opacity: 1;
-    background-image: url(./images/home/todolist.png);
+    background-image: url(/images/home/todolist.png);
 }
 .image.bg-pokebook {
     opacity: 1;
-    background-image: url(./images/home/pokebook.png);
+    background-image: url(/images/home/pokebook.png);
 }
 .image.bg-pinwork {
     opacity: 1;
-    background-image: url(./images/home/pinwork.png);
+    background-image: url(/images/home/pinwork.png);
 }
 .project-name {
     display: inline-block;
