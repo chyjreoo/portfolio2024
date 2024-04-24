@@ -57,7 +57,7 @@ function HomePage() {
                     }
             
                     if(sectionRefs.current) {
-                        Array.from(sectionRefs.current.children).forEach((sectionNode, i) => {
+                        Array.from(sectionRefs.current.children).forEach((sectionNode) => {
                             const section = sectionNode as HTMLDivElement;
                             const imgBox = section.querySelector(".imgbox");
                             let intoAnim: GSAPTween;
