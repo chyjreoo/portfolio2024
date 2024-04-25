@@ -1,6 +1,7 @@
 {
   "name": "react_portfolio",
-  "private": true,
+  "private": false,
+  "homepage": "https://chyjreoo.github.io/portfolio2024/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
