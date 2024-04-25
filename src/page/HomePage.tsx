@@ -105,7 +105,7 @@ function HomePage() {
                 </div>
                 <div className="col-span-1">
                     <div className="imgbox flex flex-col justify-center h-fit md:h-dvh">
-                        <img className="w-fit border rounded-lg" src="./images/home/banner.jpg" alt="banner" />
+                        <img className="w-fit border rounded-lg" src="https://chyjreoo.github.io/portfolio2024/images/home/banner.jpg" alt="banner" />
                     </div>
                 </div>
             </section>
