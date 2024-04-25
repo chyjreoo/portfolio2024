@@ -6,7 +6,7 @@ import projectsLoader from "./page/projects/projectsLoader";
 
 const router = createBrowserRouter ([
     {
-        path: '/portfolio2024/',
+        path: './',
         element: <Root />,
         children: [
             {
@@ -14,14 +14,14 @@ const router = createBrowserRouter ([
                 element: <HomePage />
             },
             {
-                path: '/portfolio2024/projects/:name',
+                path: './projects/:name',
                 element: <ProjectDetailPage />,
                 loader: projectsLoader
             },
 
         ]
     }
-],{ basename: "/portfolio2024" })
+],{ basename: "/portfolio2024/" })
 function App() {
     return <RouterProvider router={router} />
 }
