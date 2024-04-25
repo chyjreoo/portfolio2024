@@ -6,7 +6,7 @@ import projectsLoader from "./page/projects/projectsLoader";
 
 const router = createHashRouter([
     {
-        path: '/',
+        path: '/portfolio2024/',
         element: <Root />,
         children: [
             {
@@ -14,14 +14,14 @@ const router = createHashRouter([
                 element: <HomePage />
             },
             {
-                path: '/projects/:name',
+                path: '/portfolio2024/projects/:name',
                 element: <ProjectDetailPage />,
                 loader: projectsLoader
             },
 
         ]
     }
-],{ basename: "/portfolio2024/" })
+])
 function App() {
     return <RouterProvider router={router} />
 }
