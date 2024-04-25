@@ -1,12 +1,12 @@
-import { createBrowserRouter , RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import Root from "./page/Root";
 import HomePage from "./page/HomePage";
 import ProjectDetailPage from "./page/projects/ProjectDetailPage";
 import projectsLoader from "./page/projects/projectsLoader";
 
-const router = createBrowserRouter ([
+const router = createHashRouter([
     {
-        path: './',
+        path: '/',
         element: <Root />,
         children: [
             {
@@ -14,7 +14,7 @@ const router = createBrowserRouter ([
                 element: <HomePage />
             },
             {
-                path: './projects/:name',
+                path: '/projects/:name',
                 element: <ProjectDetailPage />,
                 loader: projectsLoader
             },
