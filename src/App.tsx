@@ -21,7 +21,7 @@ const router = createBrowserRouter([
 
         ]
     }
-],{ basename: "/project2024" })
+],{ basename: "/portfolio2024/" })
 function App() {
     return <RouterProvider router={router} />
 }
