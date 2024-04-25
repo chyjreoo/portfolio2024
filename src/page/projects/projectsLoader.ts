@@ -24,7 +24,7 @@ const projectsContent: projectsProps[] = [
         desc: '用React+Vite製作的簡易todolist，可以新增、編輯任務\n如果完成了也可以打勾，任務會被移動到右側完成的區域；取消勾選完成的任務可以把任務移動回左側未完成區。',
         externalLink: 'https://chyjreoo.github.io/TodoList/',
         githubLink: 'https://github.com/chyjreoo/TodoList',
-        preview: './images/projects/todolist.png'
+        preview: 'https://chyjreoo.github.io/portfolio2024/images/projects/todolist.png'
     },
     {
         name: 'pokebook',
@@ -32,7 +32,7 @@ const projectsContent: projectsProps[] = [
         desc: '用React執行的簡易寶可夢圖鑑',
         externalLink: 'https://chyjreoo.github.io/pokebook/',
         githubLink: 'https://github.com/chyjreoo/pokebook',
-        preview: './images/projects/pokebook.png'
+        preview: 'https://chyjreoo.github.io/portfolio2024/images/projects/pokebook.png'
     },
     {
         name: 'pinwork',
@@ -41,35 +41,35 @@ const projectsContent: projectsProps[] = [
         project_items: [
             {
                 title: '廣懿GOOYII科技',
-                image: './images/projects/gooyii.jpg',
+                image: 'https://chyjreoo.github.io/portfolio2024/images/projects/gooyii.jpg',
                 type: '官方網站（產品介紹＋表單）',
                 detail: '依照客戶設計稿進行切版及效果流程',
                 link: 'https://chiang.pintech.com.tw/GOOYII5/',
             },
             {
                 title: '中興大學半導體學程',
-                image: './images/projects/semic.jpg',
+                image: 'https://chyjreoo.github.io/portfolio2024/images/projects/semic.jpg',
                 type: '官方網站',
                 detail: '負責網頁設計及切版',
                 link: 'https://semiconductor.nchu.edu.tw/',
             },
             {
                 title: 'Yokumoku台灣官方網站',
-                image: './images/projects/yokumoku.jpg',
+                image: 'https://chyjreoo.github.io/portfolio2024/images/projects/yokumoku.jpg',
                 type: '官方網站＋購物車',
                 detail: '負責網頁設計、切版及效果流程',
                 link: 'https://chiang.pintech.com.tw/yokumoku_web4/',
             },
             {
                 title: '宜家清潔大師',
-                image: './images/projects/yija.jpg',
+                image: 'https://chyjreoo.github.io/portfolio2024/images/projects/yija.jpg',
                 type: '官方網站',
                 detail: '負責網頁設計、切版及效果流程',
                 link: 'https://chiang.pintech.com.tw/yija11/',
             },
             {
                 title: 'PIDC永續活動App',
-                image: './images/projects/pidcapp.jpg',
+                image: 'https://chyjreoo.github.io/portfolio2024/images/projects/pidcapp.jpg',
                 type: 'APP（最佳瀏覽設備：行動裝置）',
                 detail: '負責網頁設計、切版及效果流程',
                 link: 'https://chiang.pintech.com.tw/pidcapp3/',

@@ -14,7 +14,7 @@ function Dropdown({ links, toggleMenu }:DropdownProps) {
     const renderedLinks = links.map((link)=>{
         return (
             <li key={link.title}>
-                <Link onClick={triggerToggleMenu} to={`/portfolio2024/projects/${link.path}`} className="flex px-6 py-3 md:py-4 hover:bg-gray-50">{link.title}</Link>
+                <Link onClick={triggerToggleMenu} to={`/projects/${link.path}`} className="flex px-6 py-3 md:py-4 hover:bg-gray-50">{link.title}</Link>
             </li>
         )
     })
