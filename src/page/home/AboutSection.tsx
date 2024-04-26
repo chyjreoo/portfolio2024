@@ -28,7 +28,7 @@ function AboutSection() {
                     <div className="flex items-center group">
                         <SiJquery className="mr-4 text-zinc-500 opacity-60 group-hover:text-sky-700 group-hover:opacity-100" size="50"  />
                         <div className="cursor-default">
-                            <h4>Jquery</h4>
+                            <h4>jQuery</h4>
                         </div>
                     </div>
                 </div>

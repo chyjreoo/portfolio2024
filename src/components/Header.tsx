@@ -41,8 +41,8 @@ function Header() {
                     <h1 className="text-xl text-gray-800 font-bold">
                         <Link to="/">2024 Portfolio</Link>
                     </h1>
-                    <div className={`menu-list flex md:items-center ${expandMobileMenu?'active':''}`}>
-                        <ul className="flex items-start md:items-center flex-col md:flex-row text-gray-700 w-full md:w-auto">
+                    <div className={`menu-list flex sm:items-center ${expandMobileMenu?'active':''}`}>
+                        <ul className="flex items-start sm:items-center flex-col sm:flex-row text-gray-700 w-full md:w-auto">
                             <li className="py-4 md:py-0 px-2 md:px-0">
                                 <Link onClick={toggleMenu} className='w-full md:w-auto' to="/">Home</Link>
                             </li>
